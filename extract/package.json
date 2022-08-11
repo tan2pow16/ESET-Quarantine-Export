@@ -1,0 +1,6 @@
+{
+  "name": "eset-quarantine-bundle-extract",
+  "author": "tan2pow16",
+  "main": "src/extract.js",
+  "description": "Extract LIVE malware samples from ESET quarantine bundles packaged by tan2pow16"
+}
