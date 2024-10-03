@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2022, tan2pow16;
+ * Copyright (c) 2024, tan2pow16;
  *  all rights reserved.
  *
  * This program extracts bundled ESET quarantine files packaged
@@ -54,7 +54,7 @@ function decodeNDF(buf)
 {
   let ret = {};
 
-  let ptr = 64;
+  let ptr = 68;
 
   let det_type_len = buf2int32(buf, ptr) * 2;
   ptr += 4;
@@ -202,9 +202,22 @@ function decodeFolder(dir_src, dir_dst)
   }
 }
 
-function __main__()
+function __main__(args)
 {
-  decodeFolder('D:\\workspace\\NQF', 'D:\\malware');
+  if(args.length !== 2)
+  {
+    console.log('node %s <path/to/eset/quarantine/dir> <path/to/malware/output/dir>', path.basename(__filename));
+    return;
+  }
+
+  decodeFolder(args[0], args[1]);
 }
 
-__main__();
+if(require.main === module)
+{
+  __main__(process.argv.slice(2));
+}
+else
+{
+  module.exports = decodeFolder;
+}
